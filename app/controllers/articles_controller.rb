@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def show
+    @comments = @article.comments
   end
 
   def new
@@ -24,7 +25,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    byebug
     if @article.update(article_params)
       flash[:notice] = "Article was successfully updated."
       redirect_to root_path
