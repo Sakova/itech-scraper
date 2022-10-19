@@ -1,13 +1,17 @@
-<div class="d-flex min-vh-100 text-center text-white bg-dark">
-  <div class="cover-container w-50 p-3 mx-auto">
-    <div id="home-text">
-      <h1>Super articles scraper.</h1>
-      <p class="lead">Find an article with comments and copy the link to it.
-        Our scrapper will then find the comments and rate each comment and
-        based on those ratings it will rate the entire article.</p>
-      <p class="lead">
-        <a href="#" class="btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">Learn more</a>
-      </p>
+<% if current_user %>
+  <%= render 'articles/list' %>
+<% else %>
+  <div class="d-flex min-vh-100 text-center text-white bg-dark">
+    <div class="cover-container w-50 p-3 mx-auto">
+      <div id="home-text">
+        <h1>Super articles scraper.</h1>
+        <p class="lead">Find an article with comments and copy the link to it.
+          Our scrapper will then find the comments and rate each comment and
+          based on those ratings it will rate the entire article.</p>
+        <p class="lead">
+          <a href="#" class="btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">Learn more</a>
+        </p>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
