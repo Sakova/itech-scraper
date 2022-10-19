@@ -1,0 +1,33 @@
+<%= form_with model: @article do |f| %>
+  <% if @article.errors.any? %>
+    <div class="container alert alert-danger">
+      <div class="panel-body">
+        <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <% if @article.new_record? %>
+    <div class="field mb-3">
+      <%= f.label :link, class: "form-label" %>
+      <%= f.text_field :link,
+                       class: "form-control",
+                       placeholder: "Enter your link" %>
+    </div>
+  <% else %>
+    <div class="field mb-3">
+      <%= f.label :title, class: "form-label" %>
+      <%= f.text_field :title,
+                       class: "form-control",
+                       placeholder: "Enter your title" %>
+    </div>
+  <% end %>
+
+  <%= f.submit nil, class: 'btn btn-success' %> <br>
+  <%= link_to "Cancel",
+              root_path,
+              class: 'btn btn-secondary mt-3' %>
+<% end %>
