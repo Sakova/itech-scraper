@@ -23,12 +23,12 @@
           <td>
             <%= link_to "Edit",
                         edit_article_path(article),
-                        :class => 'btn btn-secondary' %>
+                        class: 'btn btn-secondary' %>
             <%= link_to "Delete",
                         article_path(article),
-                        :method => :delete,
-                        :data => { :confirm => "Are you sure?" },
-                        :class => 'btn btn-danger' %>
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: 'btn btn-danger' %>
           </td>
         </tr>
       <% end %>
@@ -37,5 +37,11 @@
     <p class="lead">You don't have any Articles</p>
   <% end %>
 
-  <%= link_to 'New Article', new_article_path, :class => 'btn btn-primary' %>
+  <%= link_to 'New Article', new_article_path, class: 'btn btn-primary' %>
+
+  <% if @articles.count > 7 %>
+    <div class="apple_pagination mt-5 container bg-gradient w-25 rounded-3">
+      <%= will_paginate @articles, container: false %>
+    </div>
+  <% end %>
 </div>

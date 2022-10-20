@@ -8,14 +8,16 @@
           <%= f.label :email, class: "form-label" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email",
                             class: "form-control",
-                            placeholder: "Enter your email" %>
+                            placeholder: "Enter your email",
+                            required: true %>
         </div>
 
         <div class="field mb-2">
           <%= f.label :password, class: "form-label" %><br />
           <%= f.password_field :password, autocomplete: "current-password",
                                class: "form-control",
-                               placeholder: "Enter your password" %>
+                               placeholder: "Enter your password",
+                               required: true %>
         </div>
 
         <% if devise_mapping.rememberable? %>
