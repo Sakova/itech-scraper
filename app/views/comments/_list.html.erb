@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Comments</h1>
+  </div>
+  <% if @comments.size > 0 %>
+    <table class="table table-dark table-striped text-white fixed-table">
+      <tr>
+        <th class="text-white">Text</th>
+        <th class="text-white">Rating</th>
+      </tr>
+
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= link_to truncate(comment.text, length: 20),
+                          comment_path(comment),
+                          class: 'text-decoration-none' %></td>
+          <td><%= comment.rating %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p class="lead">You don't have any Comments</p>
+  <% end %>
+
+  <%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
+</div>
