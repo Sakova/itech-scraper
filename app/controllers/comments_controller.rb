@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show]
-  before_action :comment_params, only: [:create]
 
   def show
   end
