@@ -7,7 +7,7 @@ class CommentsCreation
 
   def rating
     common_rating = 0
-    url = URI('https://textprobe.p.rapidapi.com/feelings')
+    url = URI(API_FEELINGS_PATH)
 
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true

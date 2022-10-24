@@ -14,7 +14,7 @@ class SiteScraper
 
   def translate(text)
     res = ""
-    url = URI("https://deep-translate1.p.rapidapi.com/language/translate/v2")
+    url = URI(API_TRANSLATE_PATH)
 
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
