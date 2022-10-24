@@ -7,16 +7,8 @@ class CommentsCreation
 
   def rating
     common_rating = 0
-    url = URI(API_FEELINGS_PATH)
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Post.new(url)
-    request['content-type'] = 'application/json'
-    request['X-RapidAPI-Key'] = ENV['RAPIDAPI_KEY']
-    request['X-RapidAPI-Host'] = 'textprobe.p.rapidapi.com'
+    request, http = ApiRequest.call(API_TEXTPROBE_PATH, TEXTPROBE_HOST).values_at(:request, :http)
+    byebug
     (@original_comments.length).times do |i|
       request.body = "{
           \"text\": \"#{@translated_comments[i]}\",
