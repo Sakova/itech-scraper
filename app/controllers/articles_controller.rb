@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :require_same_user, except: [:create, :new]
 
   def show
-    @comments = @article.comments.paginate(page: params[:page], per_page: 10)
+    @comments = @article.comments.paginate(page: params[:page], per_page: COMMENTS_PER_PAGE)
   end
 
   def new
