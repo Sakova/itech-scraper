@@ -3,7 +3,6 @@ document.addEventListener("turbolinks:load", function() {
         if($('#article_link').length) {
             $('.article-btn').on('click', function (event) {
                 if ($('#article_link').val().length > 0) {
-                    console.log('in ajax')
                     event.preventDefault();
                     let article_link = $('#article_link').val();
 
@@ -18,8 +17,6 @@ document.addEventListener("turbolinks:load", function() {
                             }
                         }),
                         success: function (data) {
-                            console.log(data)
-
                             $.ajax({
                                 url: "/comments",
                                 type: "post",
