@@ -1,4 +1,4 @@
-class CreateComments
+class CommentsCreation
   def initialize(original_comments, translated_comments, article_id)
     @original_comments = original_comments
     @translated_comments = translated_comments
