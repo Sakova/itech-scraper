@@ -16,7 +16,7 @@ document.addEventListener("turbolinks:load", function() {
                                 link: article_link
                             }
                         }),
-                        success: function (data) {
+                        success: function ({original_comments, translated_comments, article_id}) {
                             $.ajax({
                                 url: "/comments",
                                 type: "post",
@@ -24,9 +24,9 @@ document.addEventListener("turbolinks:load", function() {
                                 contentType: "application/json",
                                 data: JSON.stringify({
                                     comment: {
-                                        original_comments: data.original_comments,
-                                        translated_comments: data.translated_comments,
-                                        article_id: data.article_id
+                                        original_comments: original_comments,
+                                        translated_comments: translated_comments,
+                                        article_id: article_id
                                     }
                                 }),
                                 success: function (data) {
