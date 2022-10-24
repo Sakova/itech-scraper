@@ -8,7 +8,7 @@ class CommentsCreation
   def rating
     common_rating = 0
     request, http = ApiRequest.call(API_TEXTPROBE_PATH, TEXTPROBE_HOST).values_at(:request, :http)
-    byebug
+
     (@original_comments.length).times do |i|
       request.body = "{
           \"text\": \"#{@translated_comments[i]}\",

@@ -15,7 +15,7 @@ class SiteScraper
   def translate(text)
     res = ""
     request, http = ApiRequest.call(API_TRANSLATE_PATH, TRANSLATE_HOST).values_at(:request, :http)
-    byebug
+
     text.each do |part|
       request.body = "{
           #{"q".dump}: \"#{part}\",
