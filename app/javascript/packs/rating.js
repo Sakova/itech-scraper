@@ -9,7 +9,7 @@ document.addEventListener("turbolinks:load", function() {
                     $.ajax({
                         url: "/articles",
                         type: "post",
-                        dataType: 'json',
+                        dataType: "json",
                         contentType: "application/json",
                         data: JSON.stringify({
                             article: {
@@ -20,7 +20,7 @@ document.addEventListener("turbolinks:load", function() {
                             $.ajax({
                                 url: "/comments",
                                 type: "post",
-                                dataType: 'json',
+                                dataType: "json",
                                 contentType: "application/json",
                                 data: JSON.stringify({
                                     comment: {
@@ -30,15 +30,15 @@ document.addEventListener("turbolinks:load", function() {
                                     }
                                 }),
                                 success: function (data) {
-                                    document.location.href = '/?success=true';
+                                    document.location.href = "/?success=true";
                                 },
                                 error: function (data) {
-                                    document.location.href = '/?success=false';
+                                    document.location.href = "/?success=false";
                                 }
                             })
                         },
                         error: function (data) {
-                            document.location.href = '/?success=false';
+                            document.location.href = "/?success=false";
                         }
                     })
                 }
