@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'CommentsCreation' do
+RSpec.describe 'CommentsCreation', type: :controller do
   let(:user) do
     User.create(email: 'test@example.com', password: '123456',
                 password_confirmation: '123456')
@@ -23,7 +23,7 @@ RSpec.describe 'CommentsCreation' do
 
     it 'adds rating to the article' do
       CommentsCreation.new(['Лучший коммент в мире'], ['The best comment in the world'], article.id).rating
-      expect(Article.find(comment.article_id).rating).not_to be_nil
+      expect(Article.find(article.id).rating).not_to be_nil
     end
   end
 end
