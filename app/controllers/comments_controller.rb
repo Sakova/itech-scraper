@@ -4,6 +4,20 @@ class CommentsController < ApplicationController
   def show
   end
 
+  def create
+    response = CommentsCreation.new(comment_params[:original_comments], comment_params[:translated_comments], comment_params[:article_id]).rating
+
+    if response
+      render json: {
+        response: true
+      }
+    else
+      render json: {
+        response: false
+      }
+    end
+  end
+
   private
 
   def set_comment
@@ -11,6 +25,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text, :rating)
+    params.require(:comment).permit(:article_id, original_comments: [], translated_comments: [])
   end
 end
