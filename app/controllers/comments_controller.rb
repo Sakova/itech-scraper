@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    response = CommentsCreation.new(comment_params['original_comments'], comment_params[:translated_comments], comment_params[:article_id]).rating
+    response = CommentsCreation.new(comment_params[:original_comments], comment_params[:translated_comments], comment_params[:article_id]).rating
 
     if response
       render json: {
