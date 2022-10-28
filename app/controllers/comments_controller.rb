@@ -5,15 +5,15 @@ class CommentsController < ApplicationController
   end
 
   def create
-    status = CommentsCreation.new(comment_params['original_comments'], comment_params[:translated_comments], comment_params[:article_id]).rating
+    response = CommentsCreation.new(comment_params['original_comments'], comment_params[:translated_comments], comment_params[:article_id]).rating
 
-    if status
+    if response
       render json: {
-        status: true
+        response: true
       }
     else
       render json: {
-        status: false
+        response: false
       }
     end
   end
