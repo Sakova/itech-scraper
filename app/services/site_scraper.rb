@@ -13,10 +13,9 @@ class SiteScraper
   end
 
   def translate(text)
-    res = ""
     request, http = ApiRequest.call(API_TRANSLATE_PATH, TRANSLATE_HOST).values_at(:request, :http)
 
-    text.each do |part|
+    text.reduce("") do |string, part|
       request.body = "{
           #{"q".dump}: \"#{part}\",
           \"source\": \"ru\",
@@ -24,8 +23,7 @@ class SiteScraper
       }"
 
       response = http.request(request)
-      res += JSON.parse(response.read_body)["data"]["translations"]["translatedText"]
+      string + JSON.parse(response.read_body)["data"]["translations"]["translatedText"]
     end
-    res
   end
 end
