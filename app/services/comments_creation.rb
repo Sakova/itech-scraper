@@ -20,7 +20,7 @@ class CommentsCreation
         rating = ((scores['Positive'] * 100) - (scores['Negative'] * 100)).ceil(2)
         common_rating += rating
 
-        Comment.create(text: @original_comments[i], rating: rating, article_id: @article_id)
+        Comment.create!(text: @original_comments[i], rating: rating, article_id: @article_id)
       end
     end
     article_rating(common_rating, @article_id, @original_comments.length)
