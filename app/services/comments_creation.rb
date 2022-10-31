@@ -8,18 +8,20 @@ class CommentsCreation
   def rating
     common_rating = 0
     request, http = ApiRequest.call(API_TEXTPROBE_PATH, TEXTPROBE_HOST).values_at(:request, :http)
+    Comment.transaction do
+      (@original_comments.length).times do |i|
+        request.body = "{
+            \"text\": \"#{@translated_comments[i]}\",
+            \"lang\": \"en\"
+        }"
 
-    (@original_comments.length).times do |i|
-      request.body = "{
-          \"text\": \"#{@translated_comments[i]}\",
-          \"lang\": \"en\"
-      }"
+        response = http.request(request)
+        scores = JSON.parse(response.read_body)['sentiment_scores']
+        rating = ((scores['Positive'] * 100) - (scores['Negative'] * 100)).ceil(2)
+        common_rating += rating
 
-      response = http.request(request)
-      scores = JSON.parse(response.read_body)['sentiment_scores']
-      rating = ((scores['Positive'] * 100) - (scores['Negative'] * 100)).ceil(2)
-      common_rating += rating
-      Comment.create(text: @original_comments[i], rating: rating, article_id: @article_id)
+        Comment.create!(text: @original_comments[i], rating: rating, article_id: @article_id)
+      end
     end
     article_rating(common_rating, @article_id, @original_comments.length)
   end
