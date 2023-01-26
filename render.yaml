@@ -1,0 +1,25 @@
+databases:
+  - name: Scraper_db
+    plan: free
+    region: frankfurt
+    ipAllowList: []
+
+services:
+  - type: web
+    name: Scraper_vc.ru
+    plan: free
+    region: frankfurt
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec rails s"
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: SECRET_KEY_BASE
+        sync: false
+      - key: RAPIDAPI_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: Scraper_db
+          property: connectionString
